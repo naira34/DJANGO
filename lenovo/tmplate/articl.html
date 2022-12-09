@@ -1,0 +1,11 @@
+{%  extends 'tmplat_base.html' %}
+{%block contenu%}
+{%block titre %}article{% endblock%}
+    <h1>les articles disponibles</h1>
+   {% for articles in articl %}
+   <h3>{{articles.titre}}</h3>
+   <p>{{articles.pub}}</p>
+   <span>{{articles.contenu}}</span>
+   {% endfor %}
+
+    {% endblock %}
