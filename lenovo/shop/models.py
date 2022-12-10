@@ -15,6 +15,5 @@ class produit(models.Model):
     stock=models.IntegerField(default=0)
     description=models.TextField(blank=True)
     img=models.ImageField(upload_to="products",blank=True,null=True)
-    categorie= ForeingKey(categorie,)
-
+    
 
