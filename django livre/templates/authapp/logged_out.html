@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Déconnecté{% endblock %}
+{% block content %}
+<h1>Déconnecté</h1>
+<p>
+    Vous avez été déconnecté avec succès.
+    <hr>
+    You can <a href="{% url 'authapp:login' %}">Reconnectez-vous</a>.
+</p>
+{% endblock %}

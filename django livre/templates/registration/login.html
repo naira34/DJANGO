@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="">
+    <div style="text-align: center;">
+        <h1>Connexion</h1>
+        {% if form.errors %}
+        <p>
+            Votre nom d'utilisateur et votre mot de passe ne correspondent pas.Veuillez
+            Veuillez réessayer.
+        </p>
+        {% else %}
+        <p>Veuillez utiliser le formulaire suivant pour vous connecter</p>
+        {% endif %}
+    </div>
+
+    <form action="" method="post" class="form ">
+        <p><a href="{% url 'authapp:password_reset' %}">Mot de passe oublié?</a></p>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn btn-primary">Envoyez</button>
+        {% endbuttons %}
+    </form>
+</div>
+{% endblock content %}

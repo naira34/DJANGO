@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Bienvenue {{ new_user.first_name }}!</h1>
+<p>Votre compte à été créé avec succès. Maintenant vous pouvez <a href="{% url 'authapp:login' %}">vous connecter</a>.</p>
+{% endblock content %}

@@ -1,0 +1,276 @@
+{% extends 'produits/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- banner bg main start -->
+<div class="banner_bg_main">
+   <!-- header top section start -->
+   <div class="container">
+      <div class="header_section_top">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="custom_menu">
+                  <ul>
+                     <li><a href="#">Meilleures ventes</a></li>
+                     <li><a href="#">Idées de cadeau</a></li>
+                     <li><a href="#">Dernier</a></li>
+                     <li><a href="#">Vendeurs</a></li>
+                     <li><a href="#">Service Clients</a></li>
+
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- header top section start -->
+   <!-- logo section start -->
+   <div class="logo_section">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="logo"><a href="/"><img src="{% static 'ecom/images/logo.png' %}" alt="PHENIX"></a></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- logo section end -->
+   <!-- header section start -->
+   <div class="header_section">
+      <div class="container">
+         <div class="containt_main">
+            <div id="mySidenav" class="sidenav">
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               <a href="">Accueil</a>
+               <a href="">Fashion</a>
+
+
+               {% if user.is_authenticated and user.peut_vendre %}
+               <a href="{% url 'authapp:dashboard' %}"> Votre Pannel<a />
+                  {% else %}
+                  <a href="{% url 'authapp:register' %}">Deviens vendeur</a>
+                  <a href="{% url 'authapp:login' %}">Se connecter</a>
+                  {% endif %}
+
+            </div>
+            <span class="toggle_icon" onclick="openNav()"><img src="{% static 'ecom/images/toggle-icon.png' %}"></span>
+            <div class="dropdown">
+               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {% for cat in categories  %}
+                  <a class="dropdown-item" href="categories/{{cat.id}}/">{{ cat.name }}</a>
+                  {% endfor %}
+
+               </div>
+            </div>
+            <div class="main">
+               <!-- Another variation with a button -->
+               <form action="">
+               <div class="input-group">
+                 <input type="text" name="item" class="form-control" placeholder="Entrez le nom ...">
+                  <div class="input-group-append">
+                     <button class="btn btn-secondary" type="submit"
+                        style="background-color: #f26522; border-color:#f26522 ">
+                        <i class="fa fa-search"></i>
+                     </button>
+                  </div>
+               </div>
+            </form>
+            </div>
+            <div class="header_box">
+               <div class="lang_box ">
+                  <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                     <img src="{% static 'ecom/images/flag-france.png' %}" class="mr-1" alt="flag">
+                     Francais
+                  </a>
+                  <div class="dropdown-menu ">
+                     <a href="#" class="dropdown-item">
+
+                        <img src="{% static 'ecom/images/flag-uk.png'%}" alt="flag" class="mr-1 "
+                           title="United Kingdom"> Anglais <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                     </a>
+                  </div>
+               </div>
+               <div class="login_menu">
+                  <ul>
+                     <li>
+                        <div class="dropdown">
+                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deviens Vendeur
+                           </button>
+                           <div class="dropdown-menu login_menu_compte" aria-labelledby="dropdownMenuButton">
+
+                              {% if user.is_authenticated and user.peut_vendre %}
+                              <a class="dropdown-item" href="/authdashboard/"> Votre Pannel<a />
+                                 {% else %}
+                                 <a class="dropdown-item" href="{% url 'authapp:register' %}">Creer un compte</a>
+                                 <a class="dropdown-item" href="{% url 'authapp:login' %}">Se connecter </a>
+                                 {% endif %}
+                           </div>
+                        </div>
+                     </li>
+                     <li><a href="#">
+                           <i class="fa fa-user" aria-hidden="true"></i>
+                           <span class="padding_10">Panier</span></a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- header section end -->
+   <!-- banner section start -->
+   <div class="banner_section layout_padding">
+      <div class="container">
+         <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <h1 class="banner_taital">IMPOSEZ VOTRE STYLE</h1>
+                        <div class="buynow_bt"><a href="/authregister/">Devenez vendeur</a></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <h1 class="banner_taital">IMPOSEZ VOTRE STYLE</h1>
+                        <div class="buynow_bt"><a href="#">Devenez vendeur</a></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <h1 class="banner_taital">Deviens Vendeur <br>Avoir votre boutique en ligne</h1>
+                        <div class="buynow_bt"><a href="/authregister/">Devenez vendeur</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+               <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+               <i class="fa fa-angle-right"></i>
+            </a>
+         </div>
+      </div>
+   </div>
+   <!-- banner section end -->
+</div>
+<!-- banner bg main end -->
+<!-- fashion section start -->
+<div class="fashion_section">
+   <div id="main_slider" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <div class="container">
+               <h1 class="fashion_taital">Tous Models</h1>
+               <div class="fashion_section_2">
+                  <div class="row">
+                     {% for produit in produits %}
+                     <div class="col-lg-4 col-sm-4">
+                        <div class="box_main">
+                           <h4 class="shirt_text">{{produit.name}}</h4>
+                           <p class="price_text">FCFA <span style="color: #262626;"> {{ produit.prix }}</span></p>
+                           <div class="tshirt_img"><img src="{{ produit.image.url }}"></div>
+                           <div class="btn_main">
+                              <div class="buy_bt">
+                                 {% if user.is_authenticated  %}
+                                 <a class="btn" style="color: #2A35BC;" href="detail/{{ produit.id }}">Acheter</a>
+                                {% else %}
+                                <button type="button" class="btn" style="color: #2A35BC;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Acheter
+                               </button>
+                                {% endif %}
+                                
+                              </div>
+                              <div class="seemore_bt"><a href="detail/{{ produit.id }}">Detail</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+      <!-- pagination -->
+      <div class="pagination">
+         <span class="step-links">
+            {% if produits.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ produits.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+               Page {{ produits.number }} of {{ produits.paginator.num_pages }}.
+            </span>
+
+            {% if produits.has_next %}
+            <a href="?page={{ produits.next_page_number }}">next</a>
+            <a href="?page={{ produits.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+         </span>
+      </div>
+
+      <!-- end pagination -->
+
+      <div class="row mt-3">
+         <div class="col-md-3 offset-md-4">
+            <ul class="pagination">
+               {% if produits.has_previous %}
+               <li class="page-item">
+                  <a class="page-link" href="?page={{ produits.previous_page_number }}">Precedent</a>
+               </li>
+               {% endif %}
+
+               <li class="page-item active">
+                  <a class="page-link" href="?page={{ produits.number }}">{{ produits.number }}</a>
+               </li>
+
+               {% if produits.has_next %}
+               <li class="page-item">
+                  <a class="page-link" href="?page={{ produits.next_page_number }}">Suivant</a>
+               </li>
+               {% endif %}
+
+            </ul>
+         </div>
+      </div>
+
+   </div>
+</div>
+<!-- fashion section end -->
+
+<!-- Button trigger modal -->
+
+ <!-- Modal -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="staticBackdropLabel"> Connecter vous ou creer un compte </h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <p class="lead text-xs-center">Il ne faut que quelques secondes pour le faire</p>
+         <div class="lead text-xs-center"><a class="btn btn-info" href="{% url 'authapp:registeruser' %}">Créer un compte</a> ou
+             <a class="btn btn-success" href="{% url 'authapp:login' %}">Connexion</a></div>
+       </div>
+       <div class="modal-footer">
+         
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+
+
+{% endblock content %}
